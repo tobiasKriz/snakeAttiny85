@@ -83,18 +83,19 @@ void loop()
         switch (snakeDirection)
         {
         case 0:
+          firstPart++;
           break;
 
         case 1:
-
+          secondPart++;
           break;
 
         case 2:
-          // Action for case 2
+          firstPart--;
           break;
 
         case 3:
-          // Action for case 3
+          secondPart--;
           break;
 
         default:
@@ -127,24 +128,17 @@ void loop()
     oled.print(secondPart);
     if (lastDigit == 0)
     {
-      oled.setFont(FONT6X8);
-      oled.setCursor(20, 6);
-      oled.print(i);
-      oled.setFont(FONT6X8);
-      oled.setCursor(30, 6);
-      oled.print(firstPart);
       break;
     }
     oled.setFont(FONT6X8);
     oled.setCursor(10, 6);
-    oled.print(firstPart);
     oled.bitmap(firstPart * 8, secondPart, 8 + firstPart * 8, 1 + secondPart, snakeBody);
   }
 
   // LEVE TLACITKO
   if (temp > 830 && temp < 845)
   {
-    snakeDirection = 1;
+    snakeDirection = 0;
   }
   // LEVE TLACITKO
 
@@ -156,7 +150,7 @@ void loop()
   // STREDNI TLACITKO
   if (temp > 695 && temp < 705)
   {
-    snakeDirection = 0;
+    snakeDirection = 2;
   }
   delay(500);
   oled.clear();
