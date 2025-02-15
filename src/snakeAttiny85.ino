@@ -10,7 +10,7 @@ const uint8_t snakeBody[] PROGMEM = {
 };
 
 byte snakeCords[128] = {
-  0b01110011, 0b01110011, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000,
+  0b00000001, 0b00000011, 0b00000101, 0b00000111, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000,
   0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000,
   0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000,
   0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000, 0b00000000,
@@ -76,7 +76,7 @@ void loop() {
             firstPart++;
           }else{
             firstPart = previousPos;
-            
+            secondPart = (snakeCords[i-1] >> 1) & 0x07;
           }
           previousPos = holdingPos;
           byteWrite = (firstPart & 0x0F) << 4;
@@ -100,6 +100,8 @@ void loop() {
             secondPart++;
           }else{
             secondPart = previousPos;
+            firstPart = (snakeCords[i-1] >> 4) & 0x0F;
+
             
           }
           previousPos = holdingPos;
